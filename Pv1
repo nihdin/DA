@@ -1,0 +1,62 @@
+rm(list=ls())
+setwd("C:/Users/AnneMary/Documents/Coursework/Fall 2019/Data Analytics/Assignments")
+Airline<-read.csv("Airline.csv", header=TRUE, skip=1)
+Airline_backup<-Airline
+summary(Airline)
+#View(Airline)
+A1<-Airline[,-c(1:2,4:8)]
+#View (A1)
+test<-A1
+for (i in colnames(A1)){
+  print(class(A1[[i]]))
+  print(colnames(A1))
+  }
+col<-colnames(A1)
+a<-length(col)
+
+
+
+for(i in 2:length(col))
+{
+A1[is.na(A1[,i]),i]<-mean(A1[,i],na.rm=TRUE)
+}
+View (A1)
+
+test<-A1
+test
+which(is.na(test))
+a0<-test[which(is.na(test))]
+a0
+tf<-is.na(Airline)
+nrow(Airline)
+ncol(Airline)
+col<-colnames(Airline)
+#View(col)
+print(col[9:24])
+for (i in col[9:24]) {
+  print(Airline$i)
+ # print(i)
+}
+
+i<-col[9]
+i
+Airline$i
+k<-c[1,5]
+print(Airline[,10])
+
+Airline[,9]
+Airline$airafxpg
+tf<-is.na(Airline$i)
+nrow((Airline))
+mean(Airline$i[!tf])
+for (i in col[9:24]) {
+print (Airline$i)
+}
+rownum  
+tf<-is.na(Airline$i)
+print(i)
+m$i<-mean(na.omit(Airline$i))
+}
+warnings()
+
+rowMeans(Airline,na.rm=TRUE)
