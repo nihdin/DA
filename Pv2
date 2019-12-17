@@ -1,0 +1,257 @@
+rm(list=ls())
+setwd("C:/Users/AnneMary/Documents/Coursework/Fall 2019/Data Analytics/Assignments")
+Airline<-read.csv("Airline.csv", header=TRUE, skip=1)
+Airline_backup<-Airline
+summary(Airline)
+#View(Airline)
+A1<-Airline[,-c(1:2,4:8)]
+#View (A1)
+test<-A1
+col<-colnames(A1)
+for(i in 2:length(col)){
+  A1[is.na(A1[,i]),i]<-mean(A1[,i],na.rm=TRUE)
+}
+#View(A1)
+l<-length(A1)
+print(A1[,19])
+A1[,l]<-A1[,l-2]/A1[,l-1]
+colnames(A1[20])<-c("gross profit margin")
+summary(A1)
+summary(test)
+for(i in 2:length(colnames(A1))){
+  print(col[i])
+  print(mean(A1[,i]))
+}
+npm<-A1[,20]
+A1<-A1[,-c(15,16)]
+colnames(A1)
+#View(A1)
+r<-nrow(A1)
+AAL<-A1[1:9,]
+AAL<-AAL[,-c(1)]
+#View(AAL)
+ALK<-A1[10:18,]
+ALK<-ALK[,c(-1)]
+DAL<-A1[19:27,]
+DAL<-DAL[,c(-1)]
+LUV<-A1[28:36,]
+LUV<-LUV[,-c(1)]
+UAL<-A1[37:45,]
+UAL<-UAL[,-c(1)]
+
+par(mfrow=c(1,1))
+ncol(AAL)
+AALx<-AAL[,-c(15)]
+View(AALx)
+boxplot(AALx$)
+str(AALx)
+hist(DAL)
+hist(UAL)
+hist(LUV)
+hist(ALK)
+
+
+
+
+
+View(ALK)
+View(DAL)
+View(LUV)
+View(UAL)
+colnames(ALK)
+attach(AAL)
+View(AAL)
+#airasm<-airasm/(10^6)
+#A2<-Airline_backup
+#A2<-A2[1:9,]
+#View(A2)
+#A2[,27]<-A2[,25]/A2[,26]
+#A2[,27]
+#attach(AAL)
+#lm1<-lm(X~airafxpg)
+#summary(lm1)
+#attach(AAL)
+colnames(AAL)
+#AAL<-AAL[-c(18)]
+airaarm=c(0,0,0)
+airaarmplf=c(0,0,0)
+AAL<-cbind(AAL,airaarm)
+AAL<-cbind(AAL,airaarmplf)
+colnames(AAL)
+AAL[,18]<-AAL[,2]-AAL[,12]
+AAL[,19]<-(AAL[,18]*AAL[,7]/100)
+colnames(AAL)
+lm_A<-lm(X~AAL[,19])
+AAL[,19]
+#lm_A
+#summary(lm_A)
+#View(AAL$airaarmplf)
+#lm_An<-lm(X~airaarmplf, drop.unused.levels=TRUE)
+#lm_An        
+#summary(lm1)
+AAL2<- as.data.frame(apply(AAL[, 1:19], 2, function(x) (x - min(x))/(max(x)-min(x))))
+attach(AAL2)
+lm_AAL2<-lm(X~AAL2[,19])
+#lm_AAL_2<-lm(X~airaarmplf)
+summary(lm_AAL2)
+summary(lm_AAL_2)
+#lm_AAL2<-lm(X~airafxpg+airasm+airfcg+airprev+airrpc+airrpm+airflt)
+summary(lm_AAL2)
+########
+########
+##ALK<-ALK[,-c(18:21)]
+attach(ALK)
+airaarm=c(0,0,0)
+airaarmplf=c(0,0,0)
+ALK<-cbind(ALK,airaarm)
+ALK<-cbind(ALK,airaarmplf)
+colnames(ALK)
+ALK[,18]<-ALK[,2]-ALK[,12]
+ALK[,19]<-(ALK[,18]*ALK[,7]/100)
+View(ALK)
+ALK2<- as.data.frame(apply(ALK[, 1:19], 2, function(x) (x - min(x))/(max(x)-min(x))))
+lm_ALK2<-lm(X~ALK2[,19])
+summary(lm_ALK2)
+#######
+#######
+attach(DAL)
+airaarm=c(0,0,0)
+airaarmplf=c(0,0,0)
+DAL<-cbind(DAL,airaarm)
+DAL<-cbind(DAL,airaarmplf)
+colnames(DAL)
+DAL[,18]<-DAL[,2]-DAL[,12]
+DAL[,19]<-(DAL[,18]*DAL[,7]/100)
+View(DAL)
+DAL2<- as.data.frame(apply(DAL[, 1:19], 2, function(x) (x - min(x))/(max(x)-min(x))))
+lm_DAL2<-lm(X~DAL2[,19])
+summary(lm_DAL2)
+######
+######
+rm(UALn)
+UALn<-UAL
+attach(UALn)
+airaarm=c(0,0,0)
+airaarmplf=c(0,0,0)
+UALn<-cbind(UALn,airaarm)
+UALn<-cbind(UALn,airaarmplf)
+colnames(UALn)
+UALn[,18]<-UALn[,2]-UALn[,12]
+UALn[,19]<-(UALn[,18]*UALn[,7]/100)
+View(UALn)
+UAL2<- as.data.frame(apply(UALn[, 1:19], 2, function(x) (x - min(x))/(max(x)-min(x))))
+View(UAL2)
+attach(UAL2)
+UAL2<-UAL2[-1,]
+boxplot(UAL2)
+lm_UAL2<-lm(UAL2$X~UAL2[,19])
+summary(lm_UAL2)
+######
+######
+rm(LUV2)
+#LUV<-LUV[-c(16:22)]
+attach(LUV)
+airaarm=c(0,0,0)
+airaarmplf=c(0,0,0)
+LUV<-cbind(LUV,airaarm)
+LUV<-cbind(LUV,airaarmplf)
+colnames(LUV)
+LUV[,18]<-LUV[,2]-LUV[,12]
+LUV[,19]<-(LUV[,18]*LUV[,7]/100)
+#View(LUV)
+LUV2<- as.data.frame(apply(LUV[, 1:19], 2, function(x) (x - min(x))/(max(x)-min(x))))
+lm_LUV2<-lm(X~LUV2[,19])
+summary(lm_LUV2)
+LUV2
+boxplot(LUV$airaarmplf)
+boxplot(ALK$airaarmplf)
+boxplot(AAL$airaarmplf)
+boxplot(DAL$airaarmplf)
+boxplot(UAL$airaarmplf)
+boxplot(AAL$airaarmplf,ALK$airaarmplf,DAL$airaarmplf,UAL$airaarmplf,LUV$airaarmplf)
+plot(AAL)
+boxplot(AAL$X,ALK$X,DAL$X,UAL$X,LUV$X)
+boxplot(AAL2$X,ALK2$X,DAL2$X,UAL2$X,LUV2$X)
+View(ALK)
+boxplot(AAL$airplf,ALK$airplf,DAL$airplf,UAL$airplf,LUV$airplf)
+
+
+set.seed(111)
+sample.size <- floor(0.80 * nrow(AAL))
+number<- sample(seq_len(nrow(AAL)), size = sample.size)
+train_r <- AAL[number, ]
+test_r <- AAL[-number, ]
+m2_AAL<-knn(train=train_r[,1:11],test=test_r[,1:11],cl=train_r$airaarmplf,k=50)
+table(m2_AAL,test_r$airaarmplf)
+accuracy.AAL = sum(m2_AAL == test_r$airaarmplf)/length(test_r$airaarmplf)
+accuracy.AAL
+nrow(AAL)
+nrow(ALK)
+nrow(DAL)
+nrow(LUV)
+nrow(UAL)
+
+
+####
+set.seed(111)
+sample.size <- floor(0.80 * nrow(ALK))
+number<- sample(seq_len(nrow(ALK)), size = sample.size)
+train_r <- ALK[number, ]
+test_r <- ALK[-number, ]
+m2_ALK<-knn(train=train_r[,1:11],test=test_r[,1:11],cl=train_r$airaarmplf,k=7)
+table(m2_ALK,test_r$airaarmplf)
+accuracy.ALK = sum(m2_ALK == test_r$airaarmplf)/length(test_r$airaarmplf)
+accuracy.ALK
+####
+set.seed(111)
+sample.size <- floor(0.80 * nrow(DAL))
+number<- sample(seq_len(nrow(DAL)), size = sample.size)
+train_r <- DAL[number, ]
+test_r <- DAL[-number, ]
+m2_DAL<-knn(train=train_r[,1:11],test=test_r[,1:11],cl=train_r$airaarmplf,k=9)
+table(m2_DAL,test_r$airaarmplf)
+accuracy.DAL = sum(m2_DAL == test_r$airaarmplf)/length(test_r$airaarmplf)
+accuracy.DAL
+####
+set.seed(111)
+sample.size <- floor(0.80 * nrow(LUV))
+number<- sample(seq_len(nrow(LUV)), size = sample.size)
+train_r <- LUV[number, ]
+test_r <- LUV[-number, ]
+m2_LUV<-knn(train=train_r[,1:11],test=test_r[,1:11],cl=train_r$airaarmplf,k=9)
+table(m2_LUV,test_r$airaarmplf)
+accuracy.LUV = sum(m2_LUV == test_r$airaarmplf)/length(test_r$airaarmplf)
+accuracy.LUV
+####
+set.seed(111)
+sample.size <- floor(0.80 * nrow(UAL))
+number<- sample(seq_len(nrow(UAL2)), size = sample.size)
+train_r <- UAL[number, ]
+test_r <- UAL[-number, ]
+m2_UAL<-knn(train=train_r[,1:11],test=test_r[,1:11],cl=train_r$airaarmplf,k=9)
+table(m2_UAL,test_r$airaarmplf)
+accuracy.UAL = sum(m2_UAL2 == test_r$airaarmplf)/length(test_r$airaarmplf)
+accuracy.UAL
+####
+A2<-rbind(AAL,ALK,DAL,LUV,UAL2)
+A2
+set.seed(111)
+sample.size <- floor(0.80 * nrow(A2))
+number<- sample(seq_len(nrow(A2)), size = sample.size)
+train_r <- A2[number, ]
+test_r <- A2[-number, ]
+dim(test_r)
+train_r$airaarmplf
+mt<-knn(train, test,cl, k=1,l=0,prob=FALSE, use.all=)
+m2_A2<-knn(train=train_r[,1:19],test=test_r[,1:19],cl=train_r$airaarmplf,k=10)
+table(m2_A2,test_r$airaarmplf)
+accuracy.A2 = sum(m2_A2 == test_r$airaarmplf)/length(test_r$airaarmplf)
+accuracy.A2
+
+A3<-A2
+View(A3)
+A3<-A3[,-c(1:16)]
+pw<-princomp(A2,cor=TRUE,scores = TRUE)
+summary(pw)
+plot(pw)
+biplot(pw)
